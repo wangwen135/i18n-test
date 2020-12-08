@@ -1,0 +1,38 @@
+server:
+  port: 8899
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  config-location: classpath:mybatis-config.xml
+
+logging:
+  level:
+    root: info
+
+spring:
+  application:
+    name: i18n-test
+  messages:
+    baseFolder: i18n/
+    basename: ${spring.application.name}-messages
+    encoding: UTF-8
+    cacheMillis: 10000
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 1
+    minIdle: 1
+    maxIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    testWhileIdle: true
+    testOnBorrow: true
+    testOnReturn: false
+    druid:
+      #监控统计拦截的filters
+      filters: stat
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: root
