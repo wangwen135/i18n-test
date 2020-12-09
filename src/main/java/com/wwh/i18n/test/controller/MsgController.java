@@ -3,6 +3,7 @@ package com.wwh.i18n.test.controller;
 import com.wwh.i18n.test.common.i18n.I18nUtils;
 import com.wwh.i18n.test.model.entity.I18nMessage;
 import com.wwh.i18n.test.service.I18nMessageService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/msg")
 public class MsgController {
@@ -51,12 +53,13 @@ public class MsgController {
         return reloadableResourceBundleMessageSource.getBasenameSet();
     }
 
-    public void xxx(){
+    public void xxx() {
 
     }
 
     @GetMapping("/getByKey")
     public String getByKey(String key) {
+        log.info("请求的key:{}", key);
         return i18nUtils.getProperties(key);
     }
 }

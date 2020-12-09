@@ -17,6 +17,7 @@ spring:
     basename: ${spring.application.name}-messages
     encoding: UTF-8
     cacheMillis: 10000
+#   defaultLang: en
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     initialSize: 1

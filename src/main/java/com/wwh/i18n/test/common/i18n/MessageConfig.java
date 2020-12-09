@@ -27,4 +27,9 @@ public class MessageConfig {
      * 缓存刷新时间
      */
     private long cacheMillis;
+
+    /**
+     * 默认语言
+     */
+    private String defaultLang;
 }

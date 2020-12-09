@@ -9,14 +9,22 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.util.ResourceUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;
 
 import java.io.File;
+import java.util.Locale;
 
 
 @Slf4j
 @Configuration
-public class I18nConfig {
+public class SpringI18nConfig {
+
+    /**
+     * 默认为英语
+     */
+    private static final String DEFAULT_LANG = "en";
+
     /**
      * 应用名称
      */
@@ -52,7 +60,18 @@ public class I18nConfig {
         messageSource.setBasename(path);
         messageSource.setDefaultEncoding(messageConfig.getEncoding());
         messageSource.setCacheMillis(messageConfig.getCacheMillis());
+        messageSource.setDefaultLocale(defaultLocal());
         return messageSource;
+    }
+
+    /**
+     * 默认语言
+     *
+     * @return
+     */
+    @Bean(name = "defaultLocal")
+    public Locale defaultLocal() {
+        return new Locale(messageConfig.getDefaultLang() == null ? DEFAULT_LANG : messageConfig.getDefaultLang());
     }
 }
 
